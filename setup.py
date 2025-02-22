@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="py-spam-hunter-client",
-    version="1.0.2",
+    version="1.0.3",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
