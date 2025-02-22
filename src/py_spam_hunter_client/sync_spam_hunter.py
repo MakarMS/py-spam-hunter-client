@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 import requests
 from typing import List
 
@@ -6,7 +8,7 @@ from src.py_spam_hunter_client.messages.checked_message import CheckedMessage
 from src.py_spam_hunter_client.messages.message import Message
 
 
-class SyncSpamHunter:
+class SyncSpamHunterClient:
     BASE_URL = 'https://backend.spam-hunter.ru/api/v1/check'
 
     def __init__(self, api_key: str):
@@ -32,18 +34,26 @@ class SyncSpamHunter:
 
         response = requests.post(self.BASE_URL, json=data)
 
+        try:
+            parsed_response = response.json()
+        except JSONDecodeError:
+            raise CheckException('Unknown error, failed to get a response')
+
         if response.status_code == 200:
-            checked_messages = []
-
-            json = response.json()
-            for message in json['messages']:
-                checked_messages.append(
-                    CheckedMessage(
-                        message['spam_probability'],
-                        message['id'] if 'id' in message else ''
-                    )
+            checked_messages = [
+                CheckedMessage(
+                    message['spam_probability'],
+                    message.get('id', '')
                 )
-
+                for message in parsed_response.get('messages', [])
+            ]
             return checked_messages
         else:
-            raise CheckException(response.json()['errors'][0])
+            raise CheckException(self.__get_error_message(parsed_response))
+
+    @staticmethod
+    def __get_error_message(response: dict) -> str:
+        try:
+            return response['errors'][0]
+        except (KeyError, IndexError):
+            return response.get('error', 'Unknown error, failed to get a response')

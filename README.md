@@ -14,15 +14,15 @@ You can install the library via pip:
 
 ### Asynchronous Example
 
-To use the asynchronous version of the API, you can create an `AsyncSpamHunter` instance and call `check` in an asynchronous context. Below is an example of how to use it with `asyncio`:
+To use the asynchronous version of the API, you can create an `AsyncSpamHunterClient` instance and call `check` in an asynchronous context. Below is an example of how to use it with `asyncio`:
 
 ```python
 import asyncio
-from py_spam_hunter_client import AsyncSpamHunter, Message
+from py_spam_hunter_client import AsyncSpamHunterClient, Message
 
 
-async def check_message():
-  spam_hunter = AsyncSpamHunter('Your API key')
+async def check_messages():
+  spam_hunter = AsyncSpamHunterClient('Your API key')
 
   checked_messages = await spam_hunter.check(
     [
@@ -35,16 +35,16 @@ async def check_message():
     print(checked_message.get_spam_probability())
 
 
-asyncio.run(check_message())
+asyncio.run(check_messages())
 ```
 
 ### Synchronous Example
-To use the synchronous version of the API, you can use SyncSpamHunter. Here's an example of how to use it in a normal Python function:
+To use the synchronous version of the API, you can use `SyncSpamHunterClient`. Here's an example of how to use it in a normal Python function:
 
 ```python
-from py_spam_hunter_client import SyncSpamHunter, Message
+from py_spam_hunter_client import SyncSpamHunterClient, Message
 
-spam_hunter = SyncSpamHunter('Your API key')
+spam_hunter = SyncSpamHunterClient('Your API key')
 
 checked_messages = spam_hunter.check(
   [
@@ -59,7 +59,7 @@ for checked_message in checked_messages:
     
 
 ### Methods
-`AsyncSpamHunter.check(messages: List[Message]) -> List[CheckedMessage]`<br>`SyncSpamHunter.check(messages: List[Message]) -> List[CheckedMessage]`
+`AsyncSpamHunterClient.check(messages: List[Message]) -> List[CheckedMessage]`<br>`SyncSpamHunterClient.check(messages: List[Message]) -> List[CheckedMessage]`
 
 **CheckException** if the request fails or if the API returns an error.
 
