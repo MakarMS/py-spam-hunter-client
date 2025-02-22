@@ -1,4 +1,4 @@
-# SpamHunter Client
+# Spam Hunter Client
 
 A Python client for SpamHunter API to check messages for spam probability.<br>This package supports both synchronous and asynchronous usage.
 
