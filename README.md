@@ -8,7 +8,7 @@ Documentation: https://spam-hunter.ru/documentation
 
 You can install the library via pip:
 
-`pip install spam-hunter-client`
+`pip install py-spam-hunter-client`
 
 ## Usage
 
