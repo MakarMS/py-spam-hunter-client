@@ -1,0 +1,4 @@
+langdetect~=1.0.9
+requests~=2.32.3
+aiohttp~=3.11.12
+setuptools~=68.2.0
