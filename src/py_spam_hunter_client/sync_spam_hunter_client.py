@@ -3,9 +3,9 @@ from json import JSONDecodeError
 import requests
 from typing import List
 
-from src.py_spam_hunter_client.exceptions.check_exception import CheckException
-from src.py_spam_hunter_client.messages.checked_message import CheckedMessage
-from src.py_spam_hunter_client.messages.message import Message
+from .exceptions.check_exception import CheckException
+from .messages.checked_message import CheckedMessage
+from .messages.message import Message
 
 
 class SyncSpamHunterClient:
