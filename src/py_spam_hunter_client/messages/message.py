@@ -1,3 +1,5 @@
+from typing import List
+
 from langdetect import detect, LangDetectException
 from langdetect import DetectorFactory
 
@@ -6,11 +8,12 @@ DetectorFactory.seed = 0
 
 class Message:
     """
-    Class representing a message with text, language, and an optional ID.
+    Class representing a message with text, contexts, language, and an optional ID.
     If language is not provided, it will be detected automatically.
     """
-    def __init__(self, text: str, language: str = '', id: str = ''):
+    def __init__(self, text: str, contexts: List[str] = None, language: str = '', id: str = ''):
         self.__text = text
+        self.__contexts = [] if contexts is None else contexts
         self.__language = language if language else self.detect_language(text)
         self.__id = id
 
@@ -19,6 +22,9 @@ class Message:
 
     def get_text(self):
         return self.__text
+
+    def get_contexts(self):
+        return self.__contexts
 
     def get_language(self):
         return self.__language

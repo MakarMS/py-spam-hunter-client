@@ -26,8 +26,8 @@ async def check_messages():
 
   checked_messages = await spam_hunter.check(
     [
-      Message('Кто хочет заработать? В ЛС!', 'ru'),
-      Message('Кто хочет заработать? В ЛС!')
+      Message('Кто хочет заработать? В ЛС!', [], 'ru'),
+      Message('Кто хочет заработать? В ЛС!', ['Привет всем'])
     ]
   )
 
@@ -48,8 +48,8 @@ spam_hunter = SyncSpamHunterClient('Your API key')
 
 checked_messages = spam_hunter.check(
   [
-    Message('Кто хочет заработать? В ЛС!', 'ru'),
-    Message('Кто хочет заработать? В ЛС!')
+      Message('Кто хочет заработать? В ЛС!', [], 'ru'),
+      Message('Кто хочет заработать? В ЛС!', ['Привет всем'])
   ]
 )
 
@@ -67,6 +67,7 @@ for checked_message in checked_messages:
 
 - **id** (`str`): (Optional) A custom ID for the message.
 - **text** (`str`): The content of the message.
+- **contexts** (`List[str]`): The contexts of the message (e.g. 5 previous messages of the user or the chat as a whole).
 - **language** (`str`): The language of the message. It can be either:
   - `'ru'` (Russian)
   - `'en'` (English)

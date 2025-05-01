@@ -26,6 +26,7 @@ class AsyncSpamHunterClient:
                 {
                     'id': message.get_id(),
                     'message': message.get_text(),
+                    'contexts': message.get_contexts(),
                     'language': message.get_language()
                 }
             )
