@@ -11,9 +11,9 @@ class Message:
     Class representing a message with text, contexts, language, and an optional ID.
     If language is not provided, it will be detected automatically.
     """
-    def __init__(self, text: str, contexts: List[str] = None, language: str = '', id: str = ''):
+    def __init__(self, text: str, contexts: List[str], language: str = '', id: str = ''):
         self.__text = text
-        self.__contexts = [] if contexts is None else contexts
+        self.__contexts = contexts
         self.__language = language if language else self.detect_language(text)
         self.__id = id
 

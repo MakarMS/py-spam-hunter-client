@@ -26,8 +26,10 @@ async def check_messages():
 
   checked_messages = await spam_hunter.check(
     [
-      Message('Кто хочет заработать? В ЛС!', [], 'ru'),
-      Message('Кто хочет заработать? В ЛС!', ['Привет всем', 'Тебе понравился фильм?'])
+      Message('Who wants to make money? PM ME!', ['Hey, everybody.', 'Did you like the movie?'], 'en'),
+      Message('Who wants to make money? PM ME!', ['Hey, everybody.', 'Did you like the movie?']),
+      Message('Кто хочет заработать? В ЛС!', ['Привет всем.', 'Тебе понравился фильм?'], 'ru'),
+      Message('Кто хочет заработать? В ЛС!', ['Привет всем.', 'Тебе понравился фильм?'])
     ]
   )
 
@@ -48,8 +50,10 @@ spam_hunter = SyncSpamHunterClient('Your API key')
 
 checked_messages = spam_hunter.check(
   [
-      Message('Кто хочет заработать? В ЛС!', [], 'ru'),
-      Message('Кто хочет заработать? В ЛС!', ['Привет всем', 'Тебе понравился фильм?'])
+      Message('Who wants to make money? PM ME!', ['Hey, everybody.', 'Did you like the movie?'], 'en'),
+      Message('Who wants to make money? PM ME!', ['Hey, everybody.', 'Did you like the movie?']),
+      Message('Кто хочет заработать? В ЛС!', ['Привет всем.', 'Тебе понравился фильм?'], 'ru'),
+      Message('Кто хочет заработать? В ЛС!', ['Привет всем.', 'Тебе понравился фильм?'])
   ]
 )
 
