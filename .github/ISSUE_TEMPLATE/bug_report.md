@@ -17,7 +17,7 @@ A clear and concise description of what the bug is.
 
 Please provide a minimal reproducible example, e.g.:
 
-1. Call `TextProbe::analyze("example@example.com")`
+1. Call `spam_hunter.check()`
 2. See error
 
 ---
@@ -37,7 +37,7 @@ What actually happened.
 ### 📦 Version
 
 - Library version: `x.y.z`
-- PHP version: `8.x`
+- Python version: `8.x`
 
 ---
 
