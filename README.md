@@ -60,25 +60,67 @@ checked_messages = spam_hunter.check(
 for checked_message in checked_messages:
   print(checked_message.get_spam_probability())
 ```
-    
 
-### Methods
-`AsyncSpamHunterClient.check(messages: List[Message]) -> List[CheckedMessage]`<br>`SyncSpamHunterClient.check(messages: List[Message]) -> List[CheckedMessage]`
+### 📘 API Reference
 
-**CheckException** if the request fails or if the API returns an error.
+#### `check(messages: List[Message]) -> List[CheckedMessage]`
 
-### Message Object
+The `check` method is available in both asynchronous and synchronous clients:
 
-- **id** (`str`): (Optional) A custom ID for the message.
-- **text** (`str`): The content of the message.
-- **contexts** (`List[str]`): The contexts of the message (for example, 5 previous chat messages).
-- **language** (`str`): The language of the message. It can be either:
-  - `'ru'` (Russian)
-  - `'en'` (English)
-  - Left empty for auto-detection.
+* `AsyncSpamHunterClient.check(messages)` — asynchronous call
+* `SyncSpamHunterClient.check(messages)` — synchronous call
 
-### CheckedMessage Object
+**Parameters:**
 
-- **id** (`str`): (Optional) The custom ID of the checked message.
-- **spam_probability** (`float`): The spam probability of the message, a value between 0 and 1.
+* `messages`: A list of [`Message`](#message-object) instances to be checked.
 
+**Returns:**
+
+* A list of [`CheckedMessage`](#checkedmessage-object) instances with spam probability results.
+
+**Exceptions:**
+
+* `CheckException` — Raised if the request fails or the API returns an error.
+
+---
+
+### 📩 Message Object
+
+The `Message` class represents a message to be checked by the API.
+
+**Constructor Parameters:**
+
+```python
+Message(
+    text: str,
+    contexts: List[str],
+    language: Optional[str] = None,
+    id: Optional[str] = None
+)
+```
+
+**Fields:**
+
+* `id` (`str`, optional): A custom identifier for the message.
+* `text` (`str`): The main content of the message.
+* `contexts` (`List[str]`): Previous messages or context for the message (e.g., recent chat history).
+* `language` (`str`, optional): Language code — can be:
+
+  * `'en'` for English
+  * `'ru'` for Russian
+  * or left empty to enable automatic language detection
+
+---
+
+### 🔢 CheckedMessage Object
+
+The `CheckedMessage` class represents the result of a spam check.
+
+**Fields:**
+
+* `id` (`str`, optional): The custom ID of the original `Message`, if provided.
+* `spam_probability` (`float`): The spam probability score — a float between `0` (not spam) and `1` (definitely spam).
+
+**Methods:**
+
+* `get_spam_probability() -> float`: Returns the spam probability score for the message.
