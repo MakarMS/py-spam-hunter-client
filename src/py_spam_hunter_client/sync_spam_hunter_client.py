@@ -3,6 +3,7 @@ from json import JSONDecodeError
 import requests
 from typing import List
 
+from .client_utils import build_payload, get_error_message, parse_checked_messages
 from .exceptions.check_exception import CheckException
 from .messages.checked_message import CheckedMessage
 from .messages.message import Message
@@ -21,17 +22,7 @@ class SyncSpamHunterClient:
         :return: A list of CheckedMessage objects with spam probability and IDs.
         :raises CheckException: If the request fails or the API returns an error.
         """
-        data = {'messages': [], 'api_key': self.__api_key}
-
-        for message in messages:
-            data['messages'].append(
-                {
-                    'id': message.get_id(),
-                    'message': message.get_text(),
-                    'contexts': message.get_contexts(),
-                    'language': message.get_language()
-                }
-            )
+        data = build_payload(messages, self.__api_key)
 
         response = requests.post(self.BASE_URL, json=data)
 
@@ -41,20 +32,5 @@ class SyncSpamHunterClient:
             raise CheckException('Unknown error, failed to get a response')
 
         if response.status_code == 200:
-            checked_messages = [
-                CheckedMessage(
-                    message['spam_probability'],
-                    message.get('id', '')
-                )
-                for message in parsed_response.get('messages', [])
-            ]
-            return checked_messages
-        else:
-            raise CheckException(self.__get_error_message(parsed_response))
-
-    @staticmethod
-    def __get_error_message(response: dict) -> str:
-        try:
-            return response['errors'][0]
-        except (KeyError, IndexError):
-            return response.get('error', 'Unknown error, failed to get a response')
+            return parse_checked_messages(parsed_response)
+        raise CheckException(get_error_message(parsed_response))

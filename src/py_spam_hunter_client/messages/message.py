@@ -17,16 +17,16 @@ class Message:
         self.__language = language if language else self.detect_language(text)
         self.__id = id
 
-    def get_id(self):
+    def get_id(self) -> str:
         return self.__id
 
-    def get_text(self):
+    def get_text(self) -> str:
         return self.__text
 
-    def get_contexts(self):
+    def get_contexts(self) -> List[str]:
         return self.__contexts
 
-    def get_language(self):
+    def get_language(self) -> str:
         return self.__language
 
     @staticmethod
@@ -38,3 +38,11 @@ class Message:
             return lang
         except LangDetectException:
             return 'xx'
+
+    def to_payload(self) -> dict:
+        return {
+            'id': self.__id,
+            'message': self.__text,
+            'contexts': self.__contexts,
+            'language': self.__language,
+        }
