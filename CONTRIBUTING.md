@@ -34,9 +34,9 @@ Please make sure to read and adhere to it.
 ## Development Setup
 
 ```bash
-git clone https://github.com/MakarMS/text-probe.git
-cd text-probe
-composer install
+git clone https://github.com/MakarMS/py-spam-hunter-client.git
+cd py-spam-hunter-client
+pip install -r requirements.txt
 ```
 
 ## Coding Standards
@@ -57,8 +57,8 @@ All contributions **must** pass the full test suite. Add tests for any new featu
 
 If you find a bug:
 
-1. Search [issues](https://github.com/MakarMS/text-probe/issues) to see if it has already been reported.
-2. If not, [open a new issue](https://github.com/MakarMS/text-probe/issues/new) with as much detail as possible:
+1. Search [issues](https://github.com/MakarMS/py-spam-hunter-client/issues) to see if it has already been reported.
+2. If not, [open a new issue](https://github.com/MakarMS/py-spam-hunter-client/issues/new) with as much detail as possible:
    - Description of the problem
    - Steps to reproduce
    - PHP version, platform, etc.
