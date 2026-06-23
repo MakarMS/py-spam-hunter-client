@@ -1,4 +1,4 @@
-# Contributing to TextProbe
+# Contributing to Spam Hunter Client
 
 First off, thank you for taking the time to contribute! 🚀  
 We appreciate your interest in improving this project.
