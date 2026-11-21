@@ -9,10 +9,19 @@ This package supports both synchronous and asynchronous usage.
 
 ## 🚀 Installation
 
-You can install the library via pip:
+Version 4.0 requires Python 3.11 or newer.
+
+Install the library with pip.
 
 ```bash
 pip install py-spam-hunter-client
+```
+
+To run the test suite from a checkout, install the development requirements.
+
+```bash
+python -m pip install -r requirements.txt
+python -m pytest
 ```
 
 ---
